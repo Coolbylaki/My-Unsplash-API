@@ -32,6 +32,22 @@ router.post("/photos", async (req, res) => {
 	}
 });
 
-router.delete("/photos/:id", async (req, res) => {});
+router.delete("/photos/:id", async (req, res) => {
+	const { id } = req.params;
+
+	console.log(id);
+
+	try {
+		const deletedPhoto = await PhotoController.deletePhoto(id);
+
+		if (deletedPhoto) {
+			return res.json({ message: "Photo deleted successfully" });
+		} else {
+			res.status(404).json({ error: "Photo not found." });
+		}
+	} catch (error) {
+		res.status(500).json({ error: "An error occurred while deleting the photo." });
+	}
+});
 
 export default router;

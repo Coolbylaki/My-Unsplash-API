@@ -27,6 +27,22 @@ class PhotoController {
 		pool.close();
 		return rows[0];
 	}
+
+	static async deletePhoto(id) {
+		pool.connect();
+
+		const { rows } = await pool.query(
+			`
+      DELETE FROM photos
+			WHERE id = $1
+			RETURNING *;
+    `,
+			[id]
+		);
+
+		pool.close();
+		return rows[0];
+	}
 }
 
 export default PhotoController;
