@@ -3,9 +3,10 @@ import pg from "pg";
 class Pool {
 	_pool = null;
 
-	connect(options) {
-		this._pool = new pg.Pool(options);
-		return this._pool.query(`SELECT 1 + 1`);
+	connect() {
+		this._pool = new pg.Pool({
+			connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+		});
 	}
 
 	close() {
@@ -18,4 +19,3 @@ class Pool {
 }
 
 export default new Pool();
-// We do this if we want to connect to multiple DB's
