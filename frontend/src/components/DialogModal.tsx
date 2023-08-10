@@ -45,6 +45,17 @@ const DialogModal = ({ title, isOpened, onClose }: Props) => {
 			}>
 			<h3>{title}</h3>
 
+			<form>
+				<label htmlFor="label">Label</label>
+				<input type="text" id="label" placeholder="Enter a label" />
+				<label htmlFor="photo-url">Photo URL</label>
+				<input
+					type="text"
+					id="photo-url"
+					placeholder="https://images.unsplash.com/photo-1584395630827-860eee694d7b?ixlib=r..."
+				/>
+			</form>
+
 			<div className={styles.buttons}>
 				<button onClick={onClose}>Cancel</button>
 				<button onClick={proceedAndClose}>Submit</button>
