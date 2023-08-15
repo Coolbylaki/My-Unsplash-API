@@ -1,6 +1,7 @@
 import pool from "../pool.js";
 
 class PasswordController {
+	// Return password
 	static async getPassword() {
 		pool.connect();
 
