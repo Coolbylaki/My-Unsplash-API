@@ -19,7 +19,8 @@ class PhotoController {
 		const { rows } = await pool.query(
 			`
       INSERT INTO photos (url, label)
-			VALUES ($1, $2);
+			VALUES ($1, $2)
+			RETURNING *;
     `,
 			[url, label]
 		);

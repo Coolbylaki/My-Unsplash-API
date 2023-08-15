@@ -26,8 +26,7 @@ router.post("/photos", async (req, res) => {
 
 	try {
 		const photo = await PhotoController.insertPhoto(url, label);
-		res.status(201).json({ message: "Photo inserted successfully." });
-		return photo;
+		res.status(201).json({ message: "Photo inserted successfully.", photo });
 	} catch (error) {
 		res.status(500).json({ error: "An error occurred while inserting the photo." });
 	}
