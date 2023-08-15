@@ -1,5 +1,6 @@
 import express from "express";
 import PhotoController from "../controllers/photo.js";
+import PasswordController from "../controllers/password.js";
 
 const router = express.Router();
 
@@ -14,6 +15,20 @@ router.get("/photos", async (req, res) => {
 		}
 	} catch (error) {
 		res.status(500).json({ error: "An error occurred while fetching photos." });
+	}
+});
+
+router.get("/password", async (req, res) => {
+	try {
+		const password = await PasswordController.getPassword();
+
+		if (password) {
+			res.send(password);
+		} else {
+			res.status(404).json({ error: "Can't find password" });
+		}
+	} catch (error) {
+		res.status(500).json({ error: "An error occured while fetching password." });
 	}
 });
 
